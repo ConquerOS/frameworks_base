@@ -561,6 +561,16 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
         return stream == AudioManager.STREAM_RING || stream == AudioManager.STREAM_NOTIFICATION;
     }
 
+    private boolean updateLinkNotificationConfigW() {
+        boolean linkNotificationWithVolume = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.VOLUME_LINK_NOTIFICATION, 1) == 1;
+        if (mState.linkedNotification == linkNotificationWithVolume) {
+            return false;
+        }
+        mState.linkedNotification = linkNotificationWithVolume;
+        return true;
+    }
+
     private boolean updateEffectsSuppressorW(ComponentName effectsSuppressor) {
         if (Objects.equals(mState.effectsSuppressor, effectsSuppressor)) return false;
         mState.effectsSuppressor = effectsSuppressor;
@@ -929,6 +939,8 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
                 Settings.Global.getUriFor(Settings.Global.ZEN_MODE);
         private final Uri ZEN_MODE_CONFIG_URI =
                 Settings.Global.getUriFor(Settings.Global.ZEN_MODE_CONFIG_ETAG);
+        private final Uri VOLUME_LINK_NOTIFICATION_URI =
+                Settings.System.getUriFor(Settings.System.VOLUME_LINK_NOTIFICATION);
 
         public SettingObserver(Handler handler) {
             super(handler);
@@ -937,6 +949,8 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
         public void init() {
             mContext.getContentResolver().registerContentObserver(ZEN_MODE_URI, false, this);
             mContext.getContentResolver().registerContentObserver(ZEN_MODE_CONFIG_URI, false, this);
+            mContext.getContentResolver().registerContentObserver(VOLUME_LINK_NOTIFICATION_URI,
+                    false, this);
         }
 
         public void destroy() {
@@ -951,6 +965,9 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
             }
             if (ZEN_MODE_CONFIG_URI.equals(uri)) {
                 changed |= updateZenConfig();
+            }
+            if (VOLUME_LINK_NOTIFICATION_URI.equals(uri)) {
+                changed = updateLinkNotificationConfigW();
             }
 
             if (changed) {
