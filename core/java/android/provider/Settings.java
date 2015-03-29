@@ -5510,6 +5510,12 @@ public final class Settings {
         };
 
         /**
+         * Allow disable of screenshot shutter sound
+         * @hide
+         */
+        public static final String SCREENSHOT_SHUTTER_SOUND = "screenshot_shutter_sound";
+
+        /**
          * These are all public system settings
          *
          * @hide
