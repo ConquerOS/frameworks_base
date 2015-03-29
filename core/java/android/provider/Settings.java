@@ -5179,6 +5179,11 @@ public final class Settings {
         /**
          * @hide
          */
+        public static final String SCREENSHOT_SHUTTER_SOUND = "screenshot_shutter_sound";
+
+        /**
+         * @hide
+         */
         public static final String GLOBAL_ACTIONS_LIST = "global_actions_list";
 
         /**
