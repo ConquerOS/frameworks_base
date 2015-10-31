@@ -49,6 +49,9 @@
     <!-- Whether to show WiFi/Hotspot generation number -->
     <java-symbol type="bool" name="config_show_network_generation" />
 
+    <java-symbol type="string" name="reboot_title" />
+    <java-symbol type="string" name="reboot_confirm" />
+
     <!-- Power menu reboot -->
     <java-symbol name="reboot_to_bootloader_title" type="string" />
     <java-symbol name="reboot_to_bootloader_message" type="string" />
