@@ -248,4 +248,7 @@
 
     <!-- Default for Settings.System.TIME_12_24 -->
     <string name="def_time_format" translatable="false">12</string>
+
+    <bool name="def_text_show_password">false</bool>
+
 </resources>
