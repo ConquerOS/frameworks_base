@@ -4706,6 +4706,16 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         *  Enable statusbar double tap gesture on to put device to sleep
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
+
+        /** @hide */
+        private static final Validator DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4784,6 +4794,7 @@ public final class Settings {
             STATUSBAR_CLOCK_DATE_POSITION,
             LOCK_SHOW_STATUS_BAR,
             VOLUME_ROCKER_WAKE,
+            DOUBLE_TAP_SLEEP_GESTURE,
         };
 
         /**
@@ -4918,6 +4929,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_POSITION);
             PRIVATE_SETTINGS.add(LOCK_SHOW_STATUS_BAR);
             PRIVATE_SETTINGS.add(VOLUME_ROCKER_WAKE);
+            PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
         }
 
         /**
@@ -5026,6 +5038,8 @@ public final class Settings {
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_POSITION, STATUSBAR_CLOCK_DATE_POSITION_VALIDATOR);
             VALIDATORS.put(LOCK_SHOW_STATUS_BAR,LOCK_SHOW_STATUS_BAR_VALIDATOR);
             VALIDATORS.put(VOLUME_ROCKER_WAKE, VOLUME_ROCKER_WAKE_VALIDATOR);
+            VALIDATORS.put(DOUBLE_TAP_SLEEP_GESTURE,
+                    DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR);
         }
 
         /**
