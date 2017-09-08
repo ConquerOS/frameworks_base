@@ -396,6 +396,14 @@
                   android:exported="true">
         </activity>
 
+        <activity android:name=".tuner.NavBarActivity"
+                  android:theme="@style/ExTunerSettings"
+                  android:label="@string/nav_bar"
+                  android:process=":tuner"
+                  android:parentActivityName="org.cesium.config.center.ConfigCenter"
+                  android:exported="true">
+        </activity>
+
         <activity
             android:name=".stackdivider.ForcedResizableInfoActivity"
             android:theme="@style/ForcedResizableTheme"
