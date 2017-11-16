@@ -41,4 +41,9 @@
     <string name="navbar_editor_title">Editor</string>
     <string name="navbar_editor_summary">Configure navigaton bar</string>
 
+    <!-- Caffeine tile -->
+    <string name="quick_settings_caffeine_label">Caffeine</string>
+    <string name="accessibility_quick_settings_caffeine_off">Caffeine off</string>
+    <string name="accessibility_quick_settings_caffeine_on">Caffeine on</string>
+
 </resources>
