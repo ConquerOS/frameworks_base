@@ -114,6 +114,9 @@ public class MobileSignalController extends SignalController<
 
     private boolean mShow4gForLte;
 
+    // Volte Icon
+    private boolean mVoLTEicon;
+
     private int mCallState = TelephonyManager.CALL_STATE_IDLE;
 
     /****************************SideCar****************************/
@@ -183,7 +186,7 @@ public class MobileSignalController extends SignalController<
             @Override
             public void onChange(boolean selfChange) {
                 updateTelephony();
-            }
+        }
         };
 
         mDisplayGraceHandler = new Handler(receiverLooper) {
@@ -211,6 +214,9 @@ public class MobileSignalController extends SignalController<
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.SHOW_FOURG_ICON), false,
                     this, UserHandle.USER_ALL);
+           resolver.registerContentObserver(Settings.System.getUriFor(
+                  Settings.System.SHOW_VOLTE_ICON),
+                  false, this, UserHandle.USER_ALL);
             updateSettings();
         }
 
@@ -218,8 +224,18 @@ public class MobileSignalController extends SignalController<
          *  @hide
          */
         @Override
-        public void onChange(boolean selfChange) {
+        public void onChange(boolean selfChange, Uri uri) {
+            super.onChange(selfChange, uri);
             updateSettings();
+            if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.SHOW_VOLTE_ICON))) {
+                    mVoLTEicon = Settings.System.getIntForUser(
+                            mContext.getContentResolver(),
+                            Settings.System.SHOW_VOLTE_ICON,
+                            0, UserHandle.USER_CURRENT) == 1;
+            }
+            mapIconSets();
+            updateTelephony();
         }
     }
 
@@ -428,7 +444,7 @@ public class MobileSignalController extends SignalController<
         int resId = 0;
         int voiceNetTye = getVoiceNetworkType();
         if ( (mCurrentState.voiceCapable || mCurrentState.videoCapable)
-                &&  mCurrentState.imsRegistered ) {
+                &&  mCurrentState.imsRegistered && mVoLTEicon) {
             resId = R.drawable.ic_volte;
         }else if ( (mDataNetType == TelephonyManager.NETWORK_TYPE_LTE
                         || mDataNetType == TelephonyManager.NETWORK_TYPE_LTE_CA)
