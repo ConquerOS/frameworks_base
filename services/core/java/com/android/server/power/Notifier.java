@@ -825,6 +825,9 @@ public class Notifier {
         final boolean animationEnabled = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.CHARGING_ANIMATION, 1) == 1;
         playChargingStartedFeedback(userId);
+        if (mStatusBarManagerInternal != null) {
+            mStatusBarManagerInternal.showChargingAnimation(batteryLevel);
+        }
         mSuspendBlocker.release();
     }
 
