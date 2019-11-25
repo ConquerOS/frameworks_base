@@ -46,4 +46,7 @@
     <!-- Device have OnePlus Vibration mototr -->
     <java-symbol type="bool" name="config_hasOnePlusHapticMotor" />
 
+    <!-- Whether to show WiFi/Hotspot generation number -->
+    <java-symbol type="bool" name="config_show_network_generation" />
+
 </resources>
