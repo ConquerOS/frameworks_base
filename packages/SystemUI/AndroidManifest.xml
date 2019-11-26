@@ -190,10 +190,6 @@
     <!-- Quick Settings tile: Night Mode / Dark Theme -->
     <uses-permission android:name="android.permission.MODIFY_DAY_NIGHT_MODE" />
 
-    <!-- Sync tile -->
-    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
-
     <!-- Block notifications inline notifications -->
     <uses-permission android:name="android.permission.UPDATE_APP_OPS_STATS" />
 
@@ -279,6 +275,13 @@
     <protected-broadcast android:name="com.android.settingslib.action.REGISTER_SLICE_RECEIVER" />
     <protected-broadcast android:name="com.android.settingslib.action.UNREGISTER_SLICE_RECEIVER" />
     <protected-broadcast android:name="com.android.settings.flashlight.action.FLASHLIGHT_CHANGED" />
+
+    <!-- Sync tile -->
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+
+    <!-- DataSwitch tile -->
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />
 
     <application
         android:name=".SystemUIApplication"
