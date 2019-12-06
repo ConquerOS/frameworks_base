@@ -556,7 +556,7 @@ public class BaseWifiService extends IWifiManager.Stub {
 
     @Override
     public int getSoftApWifiGeneration() {
-        throw new UnsupportedOperationException();
+        return 0;
     }
 
     /* QTI Vendor Dual STA support APIs */
