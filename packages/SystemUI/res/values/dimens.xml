@@ -1174,4 +1174,8 @@
     <!-- Network traffic monitor -->
     <dimen name="net_traffic_txt_img_padding">1dp</dimen>
 
+    <dimen name="lockscreen_shortcuts_preview_paddingVertical">30dp</dimen>
+    <dimen name="lockscreen_shortcuts_preview_paddingHorizontal">50dp</dimen>
+    <dimen name="keyguard_affordance_icon_preview_padding">15dp</dimen>
+
 </resources>
