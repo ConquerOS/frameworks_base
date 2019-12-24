@@ -28,6 +28,18 @@ LOCAL_REQUIRED_MODULES := \
 	AccentColorFlatPinkOverlay \
 	AccentColorCyanOverlay \
 	AccentColorBlueGrayOverlay \
+	AccentColorCocaColaOverlay \
+        AccentColorMetallicGoldOverlay \
+        AccentColorInfernoRedOverlay \
+        AccentColorDorsetGoldOverlay \
+        AccentColorUbuntuOverlay \
+        AccentColorSalmonOverlay \
+        AccentColorPornhubOverlay \
+        AccentColorMatrixOverlay \
+        AccentColorEvolutionBlueOverlay \
+	AccentColorEvolutionGreenOverlay \
+	AccentColorEvolutionRedOverlay \
+	AccentColorEvolutionYellowOverlay \
 	DisplayCutoutEmulationCornerOverlay \
 	DisplayCutoutEmulationDoubleOverlay \
 	DisplayCutoutEmulationTallOverlay \
