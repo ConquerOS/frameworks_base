@@ -435,6 +435,7 @@ public class BatteryMeterView extends LinearLayout implements
                     mBatteryPercentView.setTextAppearance(mPercentageStyleId);
                 }
                 if (mTextColor != 0) mBatteryPercentView.setTextColor(mTextColor);
+                updatePercentText();
                 addView(mBatteryPercentView,
                         new ViewGroup.LayoutParams(
                                 LayoutParams.WRAP_CONTENT,
@@ -453,7 +454,6 @@ public class BatteryMeterView extends LinearLayout implements
             mCircleDrawable.setShowPercent(drawPercentInside);
             mFullCircleDrawable.setShowPercent(drawPercentInside);
         }
-        updatePercentText();
     }
 
     public void setIsQsHeader(boolean isQs) {
