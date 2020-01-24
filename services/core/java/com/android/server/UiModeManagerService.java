@@ -80,7 +80,7 @@ final class UiModeManagerService extends SystemService {
     private int mDockState = Intent.EXTRA_DOCK_STATE_UNDOCKED;
 
     private int mLastBroadcastState = Intent.EXTRA_DOCK_STATE_UNDOCKED;
-    private int mNightMode = UiModeManager.MODE_NIGHT_NO;
+    private int mNightMode = UiModeManager.MODE_NIGHT_YES;
     // we use the override auto mode
     // for example: force night mode off in the night time while in auto mode
     private int mNightModeOverride = mNightMode;
