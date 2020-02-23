@@ -36,4 +36,7 @@
     <dimen name="dismiss_all_button_width">55dp</dimen>
     <dimen name="dismiss_all_fab_src_size">24dp</dimen>
 
+    <!-- Size of the FOD animation -->
+    <dimen name="fod_animation_size">310dp</dimen>
+
 </resources>
