@@ -294,7 +294,7 @@ public class CellularTile extends QSTileImpl<SignalState> {
     }
 
     private Intent getCellularSettingIntent() {
-        Intent intent = new Intent("codeaurora.intent.action.MOBILE_NETWORK_SETTINGS");
+        Intent intent = new Intent(Settings.Panel.ACTION_MOBILE_DATA);
         int dataSub = SubscriptionManager.getDefaultDataSubscriptionId();
 
         if (mContext != null && intent.resolveActivity(mContext.getPackageManager()) != null) {
