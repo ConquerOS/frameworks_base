@@ -4538,6 +4538,14 @@ public final class Settings {
         public static final Validator INCALL_FEEDBACK_VIBRATE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /** Width of the navigation handle.
+         *  @hide
+         */
+        public static final String NAVIGATION_HANDLE_WIDTH = "navigation_handle_width";
+
+        /** @hide */
+        private static final Validator NAVIGATION_HANDLE_WIDTH_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -4604,6 +4612,7 @@ public final class Settings {
             DISPLAY_COLOR_MODE,
             ALARM_ALERT,
             NOTIFICATION_LIGHT_PULSE,
+            NAVIGATION_HANDLE_WIDTH,
         };
 
         /**
@@ -4725,6 +4734,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
             PRIVATE_SETTINGS.add(INCALL_FEEDBACK_VIBRATE);
+            PRIVATE_SETTINGS.add(NAVIGATION_HANDLE_WIDTH);
         }
 
         /**
@@ -4820,6 +4830,7 @@ public final class Settings {
             VALIDATORS.put(SHOW_BATTERY_PERCENT, SHOW_BATTERY_PERCENT_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_LIGHT_PULSE, BOOLEAN_VALIDATOR);
             VALIDATORS.put(INCALL_FEEDBACK_VIBRATE, INCALL_FEEDBACK_VIBRATE_VALIDATOR);
+            VALIDATORS.put(NAVIGATION_HANDLE_WIDTH, NAVIGATION_HANDLE_WIDTH_VALIDATOR);
         }
 
         /**
