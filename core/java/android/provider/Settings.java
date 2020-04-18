@@ -9171,6 +9171,14 @@ public final class Settings {
         public static final String POWER_MENU_HIDE_ON_SECURE = "power_menu_hide_on_secure";
 
         /**
+         * Wheter to have transparent background on lockscreen notifications
+         *
+         * @hide
+         */
+        public static final String LOCK_SCREEN_TRANSPARENT_NOTIFICATIONS_ENABLED =
+                "lock_screen_transparent_notifications_enabled";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
