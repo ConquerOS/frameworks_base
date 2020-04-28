@@ -385,7 +385,7 @@
     <!-- The width of the panel that holds the quick settings. -->
     <dimen name="qs_panel_width">@dimen/notification_panel_width</dimen>
 
-    <dimen name="volume_dialog_panel_transparent_padding_right">4dp</dimen>
+    <dimen name="volume_dialog_panel_transparent_padding_right">12dp</dimen>
 
     <dimen name="volume_dialog_panel_transparent_padding">20dp</dimen>
 
@@ -403,7 +403,7 @@
 
     <dimen name="volume_dialog_tap_target_size">48dp</dimen>
 
-    <dimen name="volume_dialog_spacer">4dp</dimen>
+    <dimen name="volume_dialog_spacer">12dp</dimen>
 
     <dimen name="volume_dialog_slider_margin_top">14dp</dimen>
 
@@ -417,7 +417,9 @@
 
     <dimen name="volume_tool_tip_bottom_margin">32dp</dimen>
 
-    <dimen name="volume_tool_tip_arrow_corner_radius">2dp</dimen>
+    <dimen name="volume_tool_tip_arrow_corner_radius">12dp</dimen>
+
+    <dimen name="volume_settings_padding_bottom_new">16.35dp</dimen>
 
     <!-- Gravity for the notification panel -->
     <integer name="notification_panel_layout_gravity">0x31</integer><!-- center_horizontal|top -->
@@ -872,11 +874,11 @@
     <dimen name="volume_row_padding_start">4dp</dimen>
     <dimen name="volume_row_header_padding_start">16dp</dimen>
     <dimen name="volume_row_height">64dp</dimen>
-    <dimen name="volume_row_slider_height">48dp</dimen>
+    <dimen name="volume_row_slider_height">12dp</dimen>
     <dimen name="volume_row_slider_padding_start">12dp</dimen>
 
-    <dimen name="volume_expander_margin_end">2dp</dimen>
-    <dimen name="volume_expander_margin_top">6dp</dimen>
+    <dimen name="volume_expander_margin_end">12dp</dimen>
+    <dimen name="volume_expander_margin_top">12dp</dimen>
 
     <!-- Thickness of the assist disclosure beams -->
     <dimen name="assist_disclosure_thickness">2.5dp</dimen>

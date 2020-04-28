@@ -272,28 +272,6 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
         mWorker.sendEmptyMessage(W.GET_STATE);
     }
 
-    public boolean areCaptionsEnabled() {
-        int currentValue = Settings.Secure.getIntForUser(mContext.getContentResolver(),
-                Settings.Secure.ODI_CAPTIONS_ENABLED, 0, UserHandle.USER_CURRENT);
-        return currentValue == 1;
-    }
-
-    public void setCaptionsEnabled(boolean isEnabled) {
-        Settings.Secure.putIntForUser(mContext.getContentResolver(),
-                Settings.Secure.ODI_CAPTIONS_ENABLED, isEnabled ? 1 : 0, UserHandle.USER_CURRENT);
-    }
-
-    @Override
-    public boolean isCaptionStreamOptedOut() {
-        // TODO(b/129768185): Removing secure setting, to be replaced by sound event listener
-        return false;
-    }
-
-    public void getCaptionsComponentState(boolean fromTooltip) {
-        if (mDestroyed) return;
-        mWorker.obtainMessage(W.GET_CAPTIONS_COMPONENT_STATE, fromTooltip).sendToTarget();
-    }
-
     public void notifyVisible(boolean visible) {
         if (mDestroyed) return;
         mWorker.obtainMessage(W.NOTIFY_VISIBLE, visible ? 1 : 0, 0).sendToTarget();
@@ -386,38 +364,6 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
     private void onShowSafetyWarningW(int flags) {
         if (mShowSafetyWarning) {
             mCallbacks.onShowSafetyWarning(flags);
-        }
-    }
-
-    private void onGetCaptionsComponentStateW(boolean fromTooltip) {
-        try {
-            String componentNameString = mContext.getString(
-                    com.android.internal.R.string.config_defaultSystemCaptionsService);
-            if (TextUtils.isEmpty(componentNameString)) {
-                // component doesn't exist
-                mCallbacks.onCaptionComponentStateChanged(false, fromTooltip);
-                return;
-            }
-
-            if (D.BUG) {
-                Log.i(TAG, String.format(
-                        "isCaptionsServiceEnabled componentNameString=%s", componentNameString));
-            }
-
-            ComponentName componentName = ComponentName.unflattenFromString(componentNameString);
-            if (componentName == null) {
-                mCallbacks.onCaptionComponentStateChanged(false, fromTooltip);
-                return;
-            }
-
-            PackageManager packageManager = mContext.getPackageManager();
-            mCallbacks.onCaptionComponentStateChanged(
-                    packageManager.getComponentEnabledSetting(componentName)
-                    == PackageManager.COMPONENT_ENABLED_STATE_ENABLED, fromTooltip);
-        } catch (Exception ex) {
-            Log.e(TAG,
-                    "isCaptionsServiceEnabled failed to check for captions component", ex);
-            mCallbacks.onCaptionComponentStateChanged(false, fromTooltip);
         }
     }
 
@@ -774,8 +720,6 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
         private static final int USER_ACTIVITY = 13;
         private static final int SHOW_SAFETY_WARNING = 14;
         private static final int ACCESSIBILITY_MODE_CHANGED = 15;
-        private static final int GET_CAPTIONS_COMPONENT_STATE = 16;
-
         W(Looper looper) {
             super(looper);
         }
@@ -797,8 +741,6 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
                 case NOTIFY_VISIBLE: onNotifyVisibleW(msg.arg1 != 0); break;
                 case USER_ACTIVITY: onUserActivityW(); break;
                 case SHOW_SAFETY_WARNING: onShowSafetyWarningW(msg.arg1); break;
-                case GET_CAPTIONS_COMPONENT_STATE:
-                    onGetCaptionsComponentStateW((Boolean) msg.obj); break;
                 case ACCESSIBILITY_MODE_CHANGED: onAccessibilityModeChanged((Boolean) msg.obj);
             }
         }
@@ -939,19 +881,7 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
                 });
             }
         }
-
-        @Override
-        public void onCaptionComponentStateChanged(
-                Boolean isComponentEnabled, Boolean fromTooltip) {
-            boolean componentEnabled = isComponentEnabled == null ? false : isComponentEnabled;
-            for (final Map.Entry<Callbacks, Handler> entry : mCallbackMap.entrySet()) {
-                entry.getValue().post(
-                        () -> entry.getKey().onCaptionComponentStateChanged(
-                                componentEnabled, fromTooltip));
-            }
-        }
     }
-
 
     private final class SettingObserver extends ContentObserver {
         private final Uri ZEN_MODE_URI =

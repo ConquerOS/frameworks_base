@@ -1,12 +1,9 @@
 <!--
      Copyright (C) 2015 The Android Open Source Project
-
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
-
           http://www.apache.org/licenses/LICENSE-2.0
-
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -49,11 +46,11 @@
             android:layout_gravity="right"
             android:translationZ="@dimen/volume_dialog_elevation"
             android:clipToPadding="false"
-            android:background="@drawable/rounded_bg_full">
+            android:background="@drawable/rounded_bg_full_vb">
             <com.android.keyguard.AlphaOptimizedImageButton
                 android:id="@+id/ringer_icon"
                 style="@style/VolumeButtons"
-                android:background="@drawable/rounded_ripple"
+                android:background="@drawable/rounded_ripple_vb"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
@@ -80,7 +77,7 @@
             android:translationZ="@dimen/volume_dialog_elevation"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:background="@drawable/rounded_bg_full" >
+            android:background="@drawable/rounded_bg_full_vb" >
             <LinearLayout
                 android:id="@+id/volume_dialog_rows"
                 android:layout_width="wrap_content"
@@ -96,53 +93,22 @@
                 android:id="@+id/settings_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_bg_bottom_background">
+                android:gravity="right"
+                android:layout_gravity="right"
+                android:clipToPadding="false">
                 <com.android.keyguard.AlphaOptimizedImageButton
                     android:id="@+id/settings"
                     android:src="@drawable/ic_tune_black_16dp"
+                    style="@style/VolumeButtons"
                     android:layout_width="@dimen/volume_dialog_tap_target_size"
                     android:layout_height="@dimen/volume_dialog_tap_target_size"
                     android:layout_gravity="center"
                     android:contentDescription="@string/accessibility_volume_settings"
-                    android:background="@drawable/ripple_drawable_20dp"
-                    android:tint="?android:attr/textColorSecondary"
+		    android:background="@drawable/inset_volumedialog_settings"
+                    android:tint="@color/accent_tint_color_selector"
+		    android:paddingBottom="@dimen/volume_settings_padding_bottom_new"
                     android:soundEffectsEnabled="false" />
             </FrameLayout>
         </LinearLayout>
-
-        <FrameLayout
-            android:id="@+id/odi_captions"
-            android:layout_width="@dimen/volume_dialog_caption_size"
-            android:layout_height="@dimen/volume_dialog_caption_size"
-            android:layout_marginTop="@dimen/volume_dialog_spacer"
-            android:gravity="right"
-            android:layout_gravity="right"
-            android:clipToPadding="false"
-            android:translationZ="@dimen/volume_dialog_elevation"
-            android:background="@drawable/rounded_bg_full">
-            <com.android.systemui.volume.CaptionsToggleImageButton
-                android:id="@+id/odi_captions_icon"
-                android:src="@drawable/ic_volume_odi_captions_disabled"
-                style="@style/VolumeButtons"
-                android:background="@drawable/rounded_ripple"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:tint="@color/caption_tint_color_selector"
-                android:layout_gravity="center"
-                android:soundEffectsEnabled="false"
-                sysui:optedOut="false"/>
-        </FrameLayout>
-
     </LinearLayout>
-
-    <ViewStub
-        android:id="@+id/odi_captions_tooltip_stub"
-        android:inflatedId="@+id/odi_captions_tooltip_view"
-        android:layout="@layout/volume_tool_tip_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom | right"
-        android:layout_marginRight="@dimen/volume_tool_tip_right_margin"
-        android:layout_marginBottom="@dimen/volume_tool_tip_bottom_margin"/>
-
 </FrameLayout>
