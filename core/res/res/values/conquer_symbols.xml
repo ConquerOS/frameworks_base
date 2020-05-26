@@ -31,4 +31,10 @@
     <!-- Switch Track Material -->
     <java-symbol type="dimen" name="switch_track_material_height" />
     <java-symbol type="dimen" name="switch_track_material_radius" />
+
+    <!-- App error dialog -->
+    <java-symbol type="id" name="aerr_copy" />
+    <java-symbol type="string" name="url_copy_success" />
+    <java-symbol type="string" name="url_copy_failed" />
+
 </resources>
