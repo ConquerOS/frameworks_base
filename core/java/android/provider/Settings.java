@@ -4505,13 +4505,6 @@ public final class Settings {
          */
 
         /**
-         * Swipe to screenshot gesture
-         * Also known as Three Fingers Screenshot.
-         * @hide
-         */
-        public static final String SWIPE_TO_SCREENSHOT = "swipe_to_screenshot";
-
-        /**
          * Whether or not volume button music controls should be enabled to seek media tracks
          * @hide
          */
