@@ -81,5 +81,9 @@
     <color name="biometric_dialog_gray">#ff888888</color>
     <color name="biometric_dialog_accent">@*android:color/accent_device_default_dark</color>
     <color name="biometric_dialog_error">#fff28b82</color> <!-- red 300 -->
+    
+    <!-- OOS Clear all Notification Button -->
+    <color name="recents_dismiss_all_background_color">#0d0d0d</color>
+    <color name="recents_dismiss_all_icon_color">@android:color/white</color>
 
 </resources>
