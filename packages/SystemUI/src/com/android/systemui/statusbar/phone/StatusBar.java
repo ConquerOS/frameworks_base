@@ -751,12 +751,6 @@ public class StatusBar extends SystemUI implements DemoMode,
             Log.v(TAG, "start(): no wallpaper service ");
         }
 
-        // Make sure we always have the most current wallpaper info.
-        IntentFilter wallpaperChangedFilter = new IntentFilter(Intent.ACTION_WALLPAPER_CHANGED);
-        mContext.registerReceiverAsUser(mWallpaperChangedReceiver, UserHandle.ALL,
-                wallpaperChangedFilter, null /* broadcastPermission */, null /* scheduler */);
-        mWallpaperChangedReceiver.onReceive(mContext, null);
-
         // Set up the initial notification state. This needs to happen before CommandQueue.disable()
         setUpPresenter();
 
