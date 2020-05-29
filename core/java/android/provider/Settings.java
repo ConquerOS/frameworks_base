@@ -4778,12 +4778,6 @@ public final class Settings {
         public static final String LOCK_DATE_FONTS = "lock_date_fonts";
 
         /**
-         * Whether to show charging animation
-         * @hide
-         */
-        public static final String CHARGING_ANIMATION = "charging_animation";
-
-        /**
          * Three Finger Gesture from Oppo
          * @hide
          */
