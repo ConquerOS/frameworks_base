@@ -4716,17 +4716,6 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
-         * Double tap on lockscreen to sleep
-         * @hide
-         */
-        public static final String DOUBLE_TAP_SLEEP_LOCKSCREEN =
-                "double_tap_sleep_lockscreen";
-
-        /** @hide */
-        private static final Validator DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR =
-                BOOLEAN_VALIDATOR;
-
-        /**
          * Whether to display 4G icon instead LTE
          * @hide
          */
@@ -4870,7 +4859,6 @@ public final class Settings {
             LOCK_SHOW_STATUS_BAR,
             VOLUME_ROCKER_WAKE,
             DOUBLE_TAP_SLEEP_GESTURE,
-            DOUBLE_TAP_SLEEP_LOCKSCREEN,
             CHARGING_ANIMATION,
         };
 
@@ -5007,7 +4995,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCK_SHOW_STATUS_BAR);
             PRIVATE_SETTINGS.add(VOLUME_ROCKER_WAKE);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
-            PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
             PRIVATE_SETTINGS.add(CHARGING_ANIMATION);
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
         }
@@ -5120,8 +5107,6 @@ public final class Settings {
             VALIDATORS.put(VOLUME_ROCKER_WAKE, VOLUME_ROCKER_WAKE_VALIDATOR);
             VALIDATORS.put(DOUBLE_TAP_SLEEP_GESTURE,
                     DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR);
-            VALIDATORS.put(DOUBLE_TAP_SLEEP_LOCKSCREEN,
-                    DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR);
             VALIDATORS.put(CHARGING_ANIMATION, CHARGING_ANIMATION_VALIDATOR);
         }
 
