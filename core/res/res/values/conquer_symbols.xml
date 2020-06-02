@@ -43,4 +43,7 @@
     <!-- Whether device supports internal audio recording -->
     <java-symbol type="bool" name="config_hasInternalAudioRecordingSupport" />
 
+    <!-- Device have OnePlus Vibration mototr -->
+    <java-symbol type="bool" name="config_hasOnePlusHapticMotor" />
+
 </resources>
