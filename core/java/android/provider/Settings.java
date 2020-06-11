@@ -4990,6 +4990,12 @@ public final class Settings {
         };
 
         /**
+         * Holds current enabled volume panel implementation
+         * @hide
+         */
+        public static final String SYSTEMUI_PLUGIN_VOLUME = "systemui_plugin_volume";
+
+        /**
          * These are all public system settings
          *
          * @hide
@@ -5106,6 +5112,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_FOURG);
             PRIVATE_SETTINGS.add(VOLUME_PANEL_ON_LEFT);
             PRIVATE_SETTINGS.add(QS_TILE_CONQUER_TINT);
+            PRIVATE_SETTINGS.add(SYSTEMUI_PLUGIN_VOLUME);
         }
 
         /**
