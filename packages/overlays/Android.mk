@@ -19,6 +19,21 @@ LOCAL_MODULE := frameworks-base-overlays
 LOCAL_REQUIRED_MODULES := \
 	AccentColorDarkOrangeOverlay \
 	AccentColorMIUIOverlay \
+	AccentColorBlackOverlay \
+	AccentColorCinnamonOverlay \
+	AccentColorOceanOverlay \
+	AccentColorOrchidOverlay \
+	AccentColorSpaceOverlay \
+	AccentColorGreenOverlay \
+	AccentColorPurpleOverlay \
+	AccentColorBlueGrayOverlay \
+	AccentColorCoralOverlay \
+	AccentColorCyanOverlay \
+	AccentColorFlatPinkOverlay \
+	AccentColorIndigoOverlay \
+	AccentColorLightPurpleOverlay \
+	AccentColorPinkOverlay \
+	AccentColorRedOverlay \
 	AccentColorTealOverlay \
 	AccentColorRedOverlay \
 	AccentColorQGreenOverlay \
@@ -42,6 +57,7 @@ LOCAL_REQUIRED_MODULES := \
 	AccentColorEvolutionYellowOverlay \
         AccentColorCocaColaOverlay \
 	AccentColorDiscordOverlay \
+	AccentColorFerrariRedOverlay \
 	AccentColorGoldenShowerOverlay \
 	AccentColorJollibeeOverlay \
         AccentColorNextbitOverlay \
