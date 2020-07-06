@@ -262,8 +262,6 @@ interface IWifiManager
 
     boolean reassociate2(int staId, String packageName);
 
-    boolean enableNetwork2(int staId, int netId, boolean disableOthers, String packageName);
-
     ParceledListSlice getConfiguredNetworks2(int staId, String packageName);
 
     void registerForWifiNotification(int staId, in IBinder binder, in IWifiNotificationCallback callback, int callbackIdentifier);

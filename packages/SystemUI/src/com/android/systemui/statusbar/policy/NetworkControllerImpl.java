@@ -1166,6 +1166,8 @@ public class NetworkControllerImpl extends BroadcastReceiver
         boolean showVolteIcon = false;
         boolean alwaysShowNetworkTypeIcon = false;
         boolean enableRatIconEnhancement = false;
+        boolean showVowifiIcon = false;
+
         /**
          * Mapping from NR 5G status string to an integer. The NR 5G status string should match
          * those in carrier config.
@@ -1230,6 +1232,8 @@ public class NetworkControllerImpl extends BroadcastReceiver
             }
             config.enableRatIconEnhancement =
                     SystemProperties.getBoolean("persist.sysui.rat_icon_enhancement", false);
+            config.showVowifiIcon = res.getBoolean(R.bool.config_display_vowifi);
+
             return config;
         }
 

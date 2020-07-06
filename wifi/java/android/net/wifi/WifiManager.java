@@ -234,6 +234,13 @@ public class WifiManager {
     *
     * @hide
     **/
+    public static final String  WIFI_NETWORK_DISCONNECTION = "com.qualcomm.qti.net.wifi.WIFI_NETWORK_DISCONNECTION";
+
+    /**
+    *
+    *
+    * @hide
+    **/
     public static final String  WIFI_DHCP_FAILURE = "com.qualcomm.qti.net.wifi.WIFI_DHCP_FAILURE";
 
     /**
@@ -242,6 +249,18 @@ public class WifiManager {
     * @hide
     **/
     public static final String  EXTRA_WIFI_DATA_STALL_REASON = "data_stall_reasoncode";
+    /**
+    *
+    * see wifi network disconnection arg 1
+    * @hide
+    **/
+    public static final String  EXTRA_WIFI_NETWORK_DISCONNECTION_ARG1 = "network_disconnection_arg1";
+    /**
+    *
+    * see wifi network disconnection arg 2
+    * @hide
+    **/
+    public static final String  EXTRA_WIFI_NETWORK_DISCONNECTION_ARG2 = "network_disconnection_arg2";
     /**
     *
     * see dhcp failure reason code
@@ -5319,12 +5338,6 @@ public class WifiManager {
     /* QTI specific changes - START */
 
     /**
-     * Wifi Identity shared : used by WifiConfiguration
-     * @hide
-     */
-    public static final int STA_SHARED = 0;
-
-    /**
      * Wifi Identity Primary
      * @hide
      */
@@ -5383,28 +5396,6 @@ public class WifiManager {
     public boolean reassociate(int staId) {
         try {
             return mService.reassociate2(staId, mContext.getOpPackageName());
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-    }
-
-    /**
-     * Allow a previously configured network to be associated with. If
-     * <code>attemptConnect</code> is true, an attempt to connect to the selected
-     * network is initiated on interface with staId. This may result in the
-     * asynchronous delivery of state change events.
-     *
-     * @param staId the ID of the interface.
-     * @param netId the ID of the network as returned by {@link #addNetwork} or {@link
-     *        #getConfiguredNetworks}.
-     * @param attemptConnect The way to select a particular network to connect to is specify
-     *        {@code true} for this parameter.
-     * @return {@code true} if the operation succeeded
-     * @hide
-     */
-    public boolean enableNetwork(int staId, int netId, boolean attemptConnect) {
-        try {
-            return mService.enableNetwork2(staId, netId, attemptConnect, mContext.getOpPackageName());
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }

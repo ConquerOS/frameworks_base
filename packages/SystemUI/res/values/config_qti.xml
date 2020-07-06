@@ -35,4 +35,5 @@
     <bool name="config_alwaysShowTypeIcon">false</bool>
     <bool name="config_hideNoInternetState">false</bool>
     <bool name="config_display_volte">false</bool>
+    <bool name="config_display_vowifi">false</bool>
 </resources>

@@ -381,6 +381,7 @@
 
     <protected-broadcast android:name="android.net.wifi.WIFI_STATE_CHANGED" />
     <protected-broadcast android:name="com.qualcomm.qti.net.wifi.WIFI_DATA_STALL" />
+    <protected-broadcast android:name="com.qualcomm.qti.net.wifi.WIFI_NETWORK_DISCONNECTION" />
     <protected-broadcast android:name="com.qualcomm.qti.net.wifi.WIFI_DHCP_FAILURE" />
     <protected-broadcast android:name="android.net.wifi.WIFI_AP_STATE_CHANGED" />
     <protected-broadcast android:name="android.net.wifi.WIFI_CREDENTIAL_CHANGED" />
