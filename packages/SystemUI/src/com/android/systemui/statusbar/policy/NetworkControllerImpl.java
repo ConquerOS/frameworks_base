@@ -1163,10 +1163,10 @@ public class NetworkControllerImpl extends BroadcastReceiver
 
         boolean showRsrpSignalLevelforLTE = false;
         boolean hideNoInternetState = false;
-        boolean showVolteIcon = false;
+        boolean showVolteIcon;
         boolean alwaysShowNetworkTypeIcon = false;
         boolean enableRatIconEnhancement = false;
-        boolean showVowifiIcon = false;
+        boolean showVowifiIcon;
 
         /**
          * Mapping from NR 5G status string to an integer. The NR 5G status string should match
