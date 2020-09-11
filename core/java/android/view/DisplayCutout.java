@@ -39,6 +39,7 @@ import android.graphics.Region;
 import android.graphics.Region.Op;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.SystemProperties;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
@@ -629,6 +630,12 @@ public final class DisplayCutout {
     private static Pair<Path, DisplayCutout> pathAndDisplayCutoutFromSpec(String spec,
             int displayWidth, int displayHeight, float density) {
         if (TextUtils.isEmpty(spec)) {
+            return NULL_PAIR;
+        }
+        int disableRoundedCorner =
+            SystemProperties.getInt("vendor.display.disable_rounded_corner", 0);
+        Log.d("cutout", "vendor.display.disable_rounded_corner=" + disableRoundedCorner);
+        if (disableRoundedCorner == 1) {
             return NULL_PAIR;
         }
         synchronized (CACHE_LOCK) {
