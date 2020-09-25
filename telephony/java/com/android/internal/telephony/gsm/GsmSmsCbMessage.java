@@ -362,6 +362,10 @@ public class GsmSmsCbMessage {
                 }
                 break;
 
+            case SmsConstants.ENCODING_8BIT:
+                body = GsmAlphabet.gsm8BitUnpackedToString(pdu, offset, length);
+                break;
+
             case SmsConstants.ENCODING_16BIT:
                 if (dcs.hasLanguageIndicator && pdu.length >= offset + 2) {
                     // Language is two GSM characters.
