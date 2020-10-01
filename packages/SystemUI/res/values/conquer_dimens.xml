@@ -16,4 +16,10 @@
     <!-- ConquerUI QS Pnael -->
     <dimen name="qs_panel_date_size">18sp</dimen>
 
+    <!-- The minimum bottom margin of the keyguard security container -->
+    <dimen name="kg_security_container_min_bottom_margin">0dp</dimen>
+
+    <!-- QS panel brightness side margin -->
+    <dimen name="qs_brightness_side_margin">10dp</dimen>
+
 </resources>
