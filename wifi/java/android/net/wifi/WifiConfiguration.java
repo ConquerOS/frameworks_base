@@ -518,6 +518,12 @@ public class WifiConfiguration implements Parcelable {
     public static final int AP_BAND_60GHZ = 3;
 
     /**
+     * 6GHz band.
+     * @hide
+     */
+    public static final int AP_BAND_6GHZ = 3;
+
+    /**
      * Device is allowed to choose the optimal band (2Ghz or 5Ghz) based on device capability,
      * operating country code and current radio conditions.
      * @hide
@@ -542,6 +548,16 @@ public class WifiConfiguration implements Parcelable {
      */
     @UnsupportedAppUsage
     public int apChannel = 0;
+
+    /**
+     * The operating class which AP resides on,currently, US only
+     * 2G  0
+     * 5G  0
+     * 6G  131, 132, 133, 134, 135
+     * @hide
+     */
+    @UnsupportedAppUsage
+    public int apOperClass = 0;
 
     /**
      * Pre-shared key for use with WPA-PSK. Either an ASCII string enclosed in
@@ -2239,15 +2255,23 @@ public class WifiConfiguration implements Parcelable {
                 throw new IllegalStateException("Not an EAP network");
             }
 
-            return trimStringForKeyId(SSID) + "_" + keyMgmt + "_" +
-                    trimStringForKeyId(enterpriseConfig.getKeyId(current != null ?
-                            current.enterpriseConfig : null));
+            String keyId = trimStringForKeyId(SSID) + "_" + keyMgmt + "_"
+                    + trimStringForKeyId(enterpriseConfig.getKeyId(current != null
+                    ? current.enterpriseConfig : null));
+
+            if (!fromWifiNetworkSuggestion) {
+                return keyId;
+            }
+            return keyId + "_" + trimStringForKeyId(BSSID) + "_" + trimStringForKeyId(creatorName);
         } catch (NullPointerException e) {
             throw new IllegalStateException("Invalid config details");
         }
     }
 
     private String trimStringForKeyId(String string) {
+        if (string == null) {
+            return "";
+        }
         // Remove quotes and spaces
         return string.replace("\"", "").replace(" ", "");
     }
@@ -2571,6 +2595,7 @@ public class WifiConfiguration implements Parcelable {
             staId = source.staId;
             lastWpa2FallbackAttemptTime = source.lastWpa2FallbackAttemptTime;
             linkedNetworkId = source.linkedNetworkId;
+            apOperClass = source.apOperClass;
         }
     }
 
@@ -2651,6 +2676,7 @@ public class WifiConfiguration implements Parcelable {
         dest.writeInt(staId);
         dest.writeLong(lastWpa2FallbackAttemptTime);
         dest.writeInt(linkedNetworkId);
+        dest.writeInt(apOperClass);
     }
 
     /** Implement the Parcelable interface {@hide} */
@@ -2733,6 +2759,7 @@ public class WifiConfiguration implements Parcelable {
                 config.staId = in.readInt();
                 config.lastWpa2FallbackAttemptTime = in.readLong();
                 config.linkedNetworkId = in.readInt();
+                config.apOperClass = in.readInt();
                 return config;
             }
 
@@ -2756,6 +2783,7 @@ public class WifiConfiguration implements Parcelable {
         BackupUtils.writeString(out, preSharedKey);
         out.writeInt(getAuthType());
         out.writeBoolean(hiddenSSID);
+        out.writeInt(apOperClass);
         return baos.toByteArray();
     }
 
@@ -2781,6 +2809,7 @@ public class WifiConfiguration implements Parcelable {
         if (version >= 3) {
             config.hiddenSSID = in.readBoolean();
         }
+        config.apOperClass = in.readInt();
         return config;
     }
 }

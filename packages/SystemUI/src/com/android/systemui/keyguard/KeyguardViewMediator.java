@@ -457,7 +457,7 @@ public class KeyguardViewMediator extends SystemUI {
                 }
                 IccCardConstants.State currentState = mUnlockTrackSimStates.get(slotId);
                 if(currentState == READY){
-                    if(simState != PIN_REQUIRED && simState != PUK_REQUIRED){
+                    if(simState != PIN_REQUIRED) {
                         mUnlockTrackSimStates.put(slotId, simState);
                     }
                 }

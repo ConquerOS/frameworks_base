@@ -85,8 +85,8 @@ public class DisplayUtils {
     public static int getCornerRadiusBottom(Context context) {
         int radius = 0;
 
-        int resourceId = context.getResources().getIdentifier("rounded_corner_radius_bottom",
-                "dimen", "android");
+        int resourceId = context.getResources().getIdentifier("config_rounded_mask_size_bottom",
+                "dimen", "com.android.systemui");
         if (resourceId > 0) {
             radius = context.getResources().getDimensionPixelSize(resourceId);
         }
@@ -104,8 +104,8 @@ public class DisplayUtils {
     public static int getCornerRadiusTop(Context context) {
         int radius = 0;
 
-        int resourceId = context.getResources().getIdentifier("rounded_corner_radius_top",
-                "dimen", "android");
+        int resourceId = context.getResources().getIdentifier("config_rounded_mask_size_top",
+                "dimen", "com.android.systemui");
         if (resourceId > 0) {
             radius = context.getResources().getDimensionPixelSize(resourceId);
         }
@@ -124,8 +124,8 @@ public class DisplayUtils {
            return radius;
         }
 
-        int resourceId = context.getResources().getIdentifier("rounded_corner_radius", "dimen",
-                "android");
+        int resourceId = context.getResources().getIdentifier("config_rounded_mask_size",
+                "dimen", "com.android.systemui");
         if (resourceId > 0) {
             radius = context.getResources().getDimensionPixelSize(resourceId);
         }

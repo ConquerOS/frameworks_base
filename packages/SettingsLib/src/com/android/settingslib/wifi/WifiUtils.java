@@ -87,6 +87,7 @@ public class WifiUtils {
         StringBuilder scans24GHz = new StringBuilder();
         StringBuilder scans5GHz = new StringBuilder();
         StringBuilder scans60GHz = new StringBuilder();
+        StringBuilder scans6GHz = new StringBuilder();
         String bssid = null;
 
         if (accessPoint.isActive() && info != null) {
@@ -106,10 +107,12 @@ public class WifiUtils {
             visibility.append(String.format("rx=%.1f", info.rxSuccessRate));
         }
 
+        int maxRssi6 = WifiConfiguration.INVALID_RSSI;
         int maxRssi5 = WifiConfiguration.INVALID_RSSI;
         int maxRssi24 = WifiConfiguration.INVALID_RSSI;
         int maxRssi60 = WifiConfiguration.INVALID_RSSI;
         final int maxDisplayedScans = 4;
+        int num6 = 0; // number of scanned BSSID on 6GHz band
         int num5 = 0; // number of scanned BSSID on 5GHz band
         int num24 = 0; // number of scanned BSSID on 2.4Ghz band
         int num60 = 0; // number of scanned BSSID on 60Ghz band
@@ -121,7 +124,19 @@ public class WifiUtils {
             if (result == null) {
                 continue;
             }
-            if (result.frequency >= AccessPoint.LOWER_FREQ_5GHZ
+            if (result.frequency >= AccessPoint.LOWER_FREQ_6GHZ
+                    && result.frequency <= AccessPoint.HIGHER_FREQ_6GHZ) {
+                num6++;
+
+                if (result.level > maxRssi6) {
+                    maxRssi6 = result.level;
+                }
+                if (num6 <= maxDisplayedScans) {
+                    scans6GHz.append(
+                            verboseScanResultSummary(accessPoint, result, bssid,
+                                    nowMs));
+                }
+            } else if (result.frequency >= AccessPoint.LOWER_FREQ_5GHZ
                     && result.frequency <= AccessPoint.HIGHER_FREQ_5GHZ) {
                 // Strictly speaking: [4915, 5825]
                 num5++;
@@ -185,6 +200,14 @@ public class WifiUtils {
                 visibility.append("max=").append(maxRssi60).append(",");
             }
             visibility.append(scans60GHz.toString());
+        }
+        visibility.append(";");
+        if (num6 > 0) {
+            visibility.append("(").append(num6).append(")");
+            if (num6 > maxDisplayedScans) {
+                visibility.append("max=").append(maxRssi6).append(",");
+            }
+            visibility.append(scans6GHz.toString());
         }
         if (numBlackListed > 0) {
             visibility.append("!").append(numBlackListed);

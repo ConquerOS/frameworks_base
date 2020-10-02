@@ -59,12 +59,12 @@ public class KeyguardSecurityModel {
     SecurityMode getSecurityMode(int userId) {
         KeyguardUpdateMonitor monitor = KeyguardUpdateMonitor.getInstance(mContext);
 
-        int subId = monitor.getUnlockedSubIdForState(State.PUK_REQUIRED);
-        if (mIsPukScreenAvailable && SubscriptionManager.isValidSubscriptionId(subId)) {
+        if (mIsPukScreenAvailable && SubscriptionManager.isValidSubscriptionId(
+                monitor.getNextSubIdForState(State.PUK_REQUIRED))) {
             return SecurityMode.SimPuk;
         }
 
-        subId = monitor.getUnlockedSubIdForState(State.PIN_REQUIRED);
+        int subId = monitor.getUnlockedSubIdForState(State.PIN_REQUIRED);
         if (SubscriptionManager.isValidSubscriptionId((subId))) {
             return SecurityMode.SimPin;
         }

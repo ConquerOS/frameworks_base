@@ -2596,6 +2596,19 @@ public class WifiManager {
     }
 
     /**
+     * Check if the chipset supports 6 GHz band
+     * @return {@code true} if supported, {@code false} otherwise.
+     * @hide
+     */
+    public boolean is6GHzBandSupported() {
+        try {
+            return mService.is6GHzBandSupported();
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+    }
+
+    /**
      * Check if the chipset requires conversion of 5GHz Only apBand to ANY.
      * @return {@code true} if required, {@code false} otherwise.
      * @hide

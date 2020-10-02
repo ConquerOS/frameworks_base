@@ -65,6 +65,14 @@ public class WifiScanner {
     public static final int WIFI_BAND_BOTH = 3;             /* both bands without DFS channels */
     /** Both 2.4 GHz band and 5 GHz band; with DFS channels */
     public static final int WIFI_BAND_BOTH_WITH_DFS = 7;    /* both bands with DFS channels */
+    /** 6 GHz band
+     * @hide
+     */
+    public static final int WIFI_BAND_6_GHZ = 8;            /* 6 GHz band */
+    /** All 2.4 GHz, 5 GHz and 6 GHz band
+     * @hide
+     */
+    public static final int WIFI_TRI_BANDS = 9;             /*All 2.4 GHz, 5 GHz and 6 GHz band */
 
     /** Minimum supported scanning period */
     public static final int MIN_SCAN_PERIOD_MS = 1000;      /* minimum supported period */

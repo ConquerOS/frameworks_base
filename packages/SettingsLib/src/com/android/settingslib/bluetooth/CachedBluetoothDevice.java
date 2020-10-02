@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * CachedBluetoothDevice represents a remote Bluetooth device. It contains
@@ -77,7 +78,7 @@ public class CachedBluetoothDevice implements Comparable<CachedBluetoothDevice> 
 
     boolean mJustDiscovered;
 
-    private final Collection<Callback> mCallbacks = new ArrayList<>();
+    private final Collection<Callback> mCallbacks = new CopyOnWriteArrayList<>();
 
     public int mTwspBatteryState;
     public int mTwspBatteryLevel;
@@ -712,6 +713,10 @@ public class CachedBluetoothDevice implements Comparable<CachedBluetoothDevice> 
         return Collections.unmodifiableList(mProfiles);
     }
 
+    public List<LocalBluetoothProfile> getProfileListCopy() {
+        return new ArrayList<>(mProfiles);
+    }
+
     public List<LocalBluetoothProfile> getConnectableProfiles() {
         List<LocalBluetoothProfile> connectableProfiles =
                 new ArrayList<LocalBluetoothProfile>();
@@ -730,22 +735,16 @@ public class CachedBluetoothDevice implements Comparable<CachedBluetoothDevice> 
     }
 
     public void registerCallback(Callback callback) {
-        synchronized (mCallbacks) {
-            mCallbacks.add(callback);
-        }
+        mCallbacks.add(callback);
     }
 
     public void unregisterCallback(Callback callback) {
-        synchronized (mCallbacks) {
-            mCallbacks.remove(callback);
-        }
+        mCallbacks.remove(callback);
     }
 
     void dispatchAttributesChanged() {
-        synchronized (mCallbacks) {
-            for (Callback callback : mCallbacks) {
-                callback.onDeviceAttributesChanged();
-            }
+        for (Callback callback : mCallbacks) {
+            callback.onDeviceAttributesChanged();
         }
     }
 
