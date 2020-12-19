@@ -2484,12 +2484,6 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
 
         if (!SubscriptionManager.isValidSubscriptionId(subId)) {
             Log.w(TAG, "invalid subId in handleServiceStateChange()");
-            for (int j = 0; j < mCallbacks.size(); j++) {
-                KeyguardUpdateMonitorCallback cb = mCallbacks.get(j).get();
-                if (cb != null) {
-                    cb.onServiceStateChanged(subId, serviceState);
-                }
-            }
             return;
         } else {
             updateTelephonyCapable(true);
@@ -2505,7 +2499,6 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
             KeyguardUpdateMonitorCallback cb = mCallbacks.get(j).get();
             if (cb != null) {
                 cb.onRefreshCarrierInfo();
-                cb.onServiceStateChanged(subId, serviceState);
             }
         }
     }
@@ -2853,36 +2846,6 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
             }
         }
     };
-
-    public boolean isOOS()
-    {
-        boolean ret = true;
-        int phoneCount = TelephonyManager.getDefault().getPhoneCount();
-
-        for (int phoneId = 0; phoneId < phoneCount; phoneId++) {
-            int[] subId = SubscriptionManager.getSubId(phoneId);
-            if (subId != null && subId.length >= 1) {
-                if (DEBUG) Log.d(TAG, "slot id:" + phoneId + " subId:" + subId[0]);
-                ServiceState state = mServiceStates.get(subId[0]);
-                if (state != null) {
-                    if (state.isEmergencyOnly())
-                        ret = false;
-                    if ((state.getVoiceRegState() != ServiceState.STATE_OUT_OF_SERVICE)
-                            && (state.getVoiceRegState() != ServiceState.STATE_POWER_OFF))
-                        ret = false;
-                    if (DEBUG) {
-                        Log.d(TAG, "is emergency: " + state.isEmergencyOnly());
-                        Log.d(TAG, "voice state: " + state.getVoiceRegState());
-                    }
-                } else {
-                    if (DEBUG) Log.d(TAG, "state is NULL");
-                }
-            }
-        }
-
-        if (DEBUG) Log.d(TAG, "is Emergency supported: " + ret);
-        return ret;
-    }
 
     /**
      * @return true if and only if the state has changed for the specified {@code slotId}
