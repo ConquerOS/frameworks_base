@@ -7439,6 +7439,6 @@ message MetricsEvent {
     // AopLime and ConquerOS constant
     AOSPLIME = 4000;
     CONQUEROS = 4001;
-
+    CONQUEROS_SETTINGS = 6969;
   }
 }
