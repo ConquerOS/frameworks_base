@@ -146,6 +146,7 @@ java_library_static {
         "vendor.qti.hardware.servicetracker-V1.0-java",
         "vendor.qti.hardware.servicetracker-V1.2-java",
         "vendor.lineage.biometrics.fingerprint.inscreen-V1.0-java",
+        "faceunlock_framework",
     ],
 }
 
