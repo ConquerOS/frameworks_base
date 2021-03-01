@@ -48,4 +48,10 @@
 
     <!-- Width of the battery icon in the status bar when set to circle style. -->
     <dimen name="status_bar_battery_icon_circle_width">13.5dp</dimen>
+
+    <!-- Quick Settings -->
+    <dimen name="quick_settings_top_margin_media">4dp</dimen>
+    <dimen name="quick_settings_top_margin_media_extra">10dp</dimen>
+    <dimen name="qs_media_action_button_size">48dp</dimen>
+
 </resources>
