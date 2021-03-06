@@ -103,4 +103,7 @@
 
     <!-- Label for current user in power menu options dialog -->
     <string name="global_action_current_user">Current</string>
+
+     <!-- Biometric Dialog - Use Face -->
+    <string name="biometric_dialog_button_use_face">Use Face</string>
 </resources>
