@@ -31,6 +31,8 @@ import android.graphics.drawable.shapes.PathShape;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.service.quicksettings.Tile;
 import android.text.TextUtils;
 import android.util.Log;
@@ -119,7 +121,14 @@ public class QSTileBaseView extends com.android.systemui.plugins.qs.QSTileView {
         setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_YES);
         setBackground(mTileBackground);
 
-        mColorActive = Utils.getColorAttrDefaultColor(context, android.R.attr.textColorPrimary);
+        // ConquerUI QS Tile color
+        boolean setConquerQsTint = Settings.System.getIntForUser(context.getContentResolver(),
+                    Settings.System.QS_TILE_CONQUER_TINT, 1, UserHandle.USER_CURRENT) == 1;
+        if (setConquerQsTint) {
+            mColorActive = Utils.getColorAttrDefaultColor(context, android.R.attr.textColorPrimary);
+        } else {
+            mColorActive = Utils.getColorAttrDefaultColor(context, android.R.attr.colorAccent);
+        }
         mColorDisabled = Utils.getDisabled(context,
                 Utils.getColorAttrDefaultColor(context, android.R.attr.textColorTertiary));
         mColorInactive = Utils.getColorAttrDefaultColor(context, android.R.attr.textColorSecondary);
