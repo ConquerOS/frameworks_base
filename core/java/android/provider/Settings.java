@@ -4963,6 +4963,13 @@ public final class Settings {
          */
         public static final String VOLUME_PANEL_ON_LEFT = "volume_panel_on_left";
 
+
+        /**
+         * ConquerUI Black and whote QS Tile tint
+         * @hide
+         */
+        public static final String QS_TILE_CONQUER_TINT = "qs_tile_conquer_tint";
+
         /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
@@ -5091,6 +5098,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
             PRIVATE_SETTINGS.add(SHOW_FOURG);
             PRIVATE_SETTINGS.add(VOLUME_PANEL_ON_LEFT);
+            PRIVATE_SETTINGS.add(QS_TILE_CONQUER_TINT);
         }
 
         /**
