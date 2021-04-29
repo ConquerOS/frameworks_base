@@ -34,10 +34,6 @@ import android.view.View;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ImageView;
-
-import android.hardware.biometrics.BiometricSourceType;
-import android.hardware.fingerprint.FingerprintManager;
 
 import androidx.core.graphics.ColorUtils;
 
@@ -68,7 +64,6 @@ public class KeyguardStatusView extends GridLayout implements
     private View mNotificationIcons;
     private Runnable mPendingMarqueeStart;
     private Handler mHandler;
-    private ImageView fpIcon;
 
     private boolean mPulsing;
     private float mDarkAmount = 0;
@@ -81,7 +76,6 @@ public class KeyguardStatusView extends GridLayout implements
     private int mIconTopMargin;
     private int mIconTopMarginWithHeader;
     private boolean mShowingHeader;
-    private Context mContext;
 
     private KeyguardUpdateMonitorCallback mInfoCallback = new KeyguardUpdateMonitorCallback() {
 
@@ -138,7 +132,6 @@ public class KeyguardStatusView extends GridLayout implements
 
     public KeyguardStatusView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-	mContext = context;
         mIActivityManager = ActivityManager.getService();
         mLockPatternUtils = new LockPatternUtils(getContext());
         mHandler = new Handler();
@@ -186,7 +179,6 @@ public class KeyguardStatusView extends GridLayout implements
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-	fpIcon = findViewById(R.id.fingerprint_view_icon);
         mStatusViewContainer = findViewById(R.id.status_view_container);
         mLogoutView = findViewById(R.id.logout);
         mNotificationIcons = findViewById(R.id.clock_notification_icon_container);
@@ -210,7 +202,6 @@ public class KeyguardStatusView extends GridLayout implements
         setEnableMarquee(shouldMarquee);
         refreshFormat();
         updateOwnerInfo();
-	UpdateFPIcon();
         updateLogoutView();
         updateDark();
     }
@@ -463,21 +454,4 @@ public class KeyguardStatusView extends GridLayout implements
             Log.e(TAG, "Failed to logout user", re);
         }
     }
-
-    private void UpdateFPIcon() {
-		FingerprintManager fingerprintManager = (FingerprintManager) mContext.getSystemService(Context.FINGERPRINT_SERVICE);
-		if (!fingerprintManager.isHardwareDetected()) { 
-			fpIcon.setVisibility(View.GONE);
-			Log.w ("StyxLSManager", "FP icon: Fingerprint not detected, falling back to Dont show icon");
-		} else if (!fingerprintManager.hasEnrolledFingerprints()) { 
-			fpIcon.setVisibility(View.GONE);
-			Log.i ("StyxLSManager", "FP icon: fpcounter=0, Dont show icon");
-		} else if (fingerprintManager.hasEnrolledFingerprints()) { 
-			fpIcon.setVisibility(View.VISIBLE);
-			Log.i ("StyxLSManager", "FP icon: fpcounter=1, Show icon");
-		} else {
-			Log.w ("StyxLSManager", "FP icon: fpcounter out of range or could not be read! Falling back to Dont show icon");
-		}
-    }
 }
-
