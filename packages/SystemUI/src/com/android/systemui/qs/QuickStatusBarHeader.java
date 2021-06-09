@@ -89,6 +89,9 @@ import com.android.systemui.statusbar.policy.DateView;
 import com.android.systemui.statusbar.policy.NextAlarmController;
 import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.util.RingerModeTracker;
+import com.android.systemui.Dependency;
+import android.net.Uri;
+import android.provider.CalendarContract;
 
 import java.util.ArrayList;
 import java.util.List;
