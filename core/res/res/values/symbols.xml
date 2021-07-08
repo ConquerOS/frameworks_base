@@ -4824,4 +4824,8 @@
 
   <java-symbol type="dimen" name="status_bar_height_default" />
   <java-symbol type="integer" name="config_maximumDelayTimeToDeactivateDataCall" />
+
+  <!-- For dynamic default font styles -->
+  <java-symbol type="string" name="config_bodyFontFamily" />
+
 </resources>
