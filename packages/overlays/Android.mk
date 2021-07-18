@@ -36,33 +36,26 @@ LOCAL_REQUIRED_MODULES := \
         DisplayCutoutEmulationHoleOverlay \
 	DisplayCutoutEmulationTallOverlay \
 	DisplayCutoutEmulationWaterfallOverlay \
-	FontNotoSerifSourceOverlay \
-	FontArvoLatoOverlay \
-        FontArbutusSourceOverlay \
-	FontRubikRubikOverlay \
-        FontKaiOverlay \
-        FontSamOverlay \
-        FontVictorOverlay \
 	IconPackCircularAndroidOverlay \
 	IconPackCircularLauncherOverlay \
 	IconPackCircularSettingsOverlay \
 	IconPackCircularSystemUIOverlay \
 	IconPackCircularThemePickerOverlay \
 	IconPackVictorAndroidOverlay \
-    IconPackVictorLauncherOverlay \
-    IconPackVictorSettingsOverlay \
-    IconPackVictorSystemUIOverlay \
-    IconPackVictorThemePickerOverlay \
-    IconPackSamAndroidOverlay \
-    IconPackSamLauncherOverlay \
-    IconPackSamSettingsOverlay \
-    IconPackSamSystemUIOverlay \
-    IconPackSamThemePickerOverlay \
-    IconPackKaiAndroidOverlay \
-    IconPackKaiLauncherOverlay \
-    IconPackKaiSettingsOverlay \
-    IconPackKaiSystemUIOverlay \
-    IconPackKaiThemePickerOverlay \
+        IconPackVictorLauncherOverlay \
+        IconPackVictorSettingsOverlay \
+        IconPackVictorSystemUIOverlay \
+        IconPackVictorThemePickerOverlay \
+        IconPackSamAndroidOverlay \
+        IconPackSamLauncherOverlay \
+        IconPackSamSettingsOverlay \
+        IconPackSamSystemUIOverlay \
+        IconPackSamThemePickerOverlay \
+        IconPackKaiAndroidOverlay \
+        IconPackKaiLauncherOverlay \
+        IconPackKaiSettingsOverlay \
+        IconPackKaiSystemUIOverlay \
+        IconPackKaiThemePickerOverlay \
 	IconPackFilledAndroidOverlay \
 	IconPackFilledLauncherOverlay \
 	IconPackFilledSettingsOverlay \
