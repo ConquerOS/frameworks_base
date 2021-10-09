@@ -5041,9 +5041,9 @@
     <string name="config_systemCompanionDeviceProvider" translatable="false"></string>
 
     <!-- Whether this device is supporting the microphone toggle -->
-    <bool name="config_supportsMicToggle">false</bool>
+    <bool name="config_supportsMicToggle">true</bool>
     <!-- Whether this device is supporting the camera toggle -->
-    <bool name="config_supportsCamToggle">false</bool>
+    <bool name="config_supportsCamToggle">true</bool>
 
     <!-- List containing the allowed install sources for accessibility service. -->
     <string-array name="config_accessibility_allowed_install_source" translatable="false"/>
