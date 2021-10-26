@@ -568,7 +568,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             IconState qsIcon = null;
             CharSequence description = null;
             // Only send data sim callbacks to QS.
-            if (mCurrentState.dataSim && mCurrentState.isDefault) {
+            if (mCurrentState.dataSim) {
                 qsTypeIcon =
                         (showDataIcon || mConfig.alwaysShowDataRatIcon) ? icons.qsDataType : 0;
                 qsIcon = new IconState(mCurrentState.enabled
@@ -592,7 +592,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                     statusIcon, qsIcon, typeIcon, qsTypeIcon,
                     activityIn, activityOut, volteIcon, dataContentDescription, dataContentDescriptionHtml,
                     description, icons.isWide, mSubscriptionInfo.getSubscriptionId(),
-                    mCurrentState.roaming, showTriangle);
+                    mCurrentState.roaming, showTriangle, mCurrentState.isDefault);
             callback.setMobileDataIndicators(mobileDataIndicators);
         } else {
             boolean showDataIcon = mCurrentState.dataConnected || dataDisabled;
@@ -603,25 +603,13 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             int qsTypeIcon = 0;
             IconState qsIcon = null;
             CharSequence description = null;
-            // Only send data sim callbacks to QS.
-            if (mProviderModelSetting) {
-                if (mCurrentState.dataSim && mCurrentState.isDefault) {
-                    qsTypeIcon =
-                            (showDataIcon || mConfig.alwaysShowDataRatIcon) ? icons.qsDataType : 0;
-                    qsIcon = new IconState(
-                            mCurrentState.enabled && !mCurrentState.isEmergency,
-                            getQsCurrentIconId(), contentDescription);
-                    description = mCurrentState.isEmergency ? null : mCurrentState.networkName;
-                }
-            } else {
-                if (mCurrentState.dataSim) {
-                    qsTypeIcon =
-                            (showDataIcon || mConfig.alwaysShowDataRatIcon) ? icons.qsDataType : 0;
-                    qsIcon = new IconState(
-                            mCurrentState.enabled && !mCurrentState.isEmergency,
-                            getQsCurrentIconId(), contentDescription);
-                    description = mCurrentState.isEmergency ? null : mCurrentState.networkName;
-                }
+            if (mCurrentState.dataSim) {
+                qsTypeIcon =
+                        (showDataIcon || mConfig.alwaysShowDataRatIcon) ? icons.qsDataType : 0;
+                qsIcon = new IconState(
+                        mCurrentState.enabled && !mCurrentState.isEmergency,
+                        getQsCurrentIconId(), contentDescription);
+                description = mCurrentState.isEmergency ? null : mCurrentState.networkName;
             }
 
             boolean activityIn = mCurrentState.dataConnected
@@ -665,7 +653,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                     statusIcon, qsIcon, typeIcon, qsTypeIcon,
                     activityIn, activityOut, volteIcon, dataContentDescription, dataContentDescriptionHtml,
                     description, icons.isWide, mSubscriptionInfo.getSubscriptionId(),
-                    mCurrentState.roaming, showTriangle);
+                    mCurrentState.roaming, showTriangle, mCurrentState.isDefault);
             callback.setMobileDataIndicators(mobileDataIndicators);
         }
     }
