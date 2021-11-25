@@ -5254,6 +5254,13 @@ public final class Settings {
         public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
 
         /**
+         * Whether to hide navbar pill and keyboard space.
+         * Default 0.
+         * @hide
+         */
+        public static final String FULLSCREEN_GESTURES = "fullscreen_gestures";
+
+        /**
          * These are all public system settings
          *
          * @hide
