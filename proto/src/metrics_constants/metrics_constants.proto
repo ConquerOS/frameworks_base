@@ -7436,7 +7436,7 @@ message MetricsEvent {
     // Add new aosp constants above this line.
     // END OF AOSP CONSTANTS
 
-    // AopLime and ConquerOS constant
+    // AopLime and conquerOS constant
     AOSPLIME = 4000;
     CONQUEROS = 4001;
     CONQUEROS_SETTINGS = 6969;
