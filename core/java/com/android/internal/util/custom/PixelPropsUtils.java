@@ -35,8 +35,6 @@ public class PixelPropsUtils {
 
     private static final Map<String, Object> propsToChangePixel5;
     private static final String[] packagesToChangePixel5 = {
-            "com.google.android.tts",
-            "com.google.android.googlequicksearchbox",
             "com.google.android.apps.recorder"
     };
 
@@ -58,10 +56,10 @@ public class PixelPropsUtils {
         propsToChangePixel6 = new HashMap<>();
         propsToChangePixel6.put("BRAND", "google");
         propsToChangePixel6.put("MANUFACTURER", "Google");
-        propsToChangePixel6.put("DEVICE", "raven");
+        propsToChangePixel6.put("DEVICE", "oriole");
         propsToChangePixel6.put("PRODUCT", "raven");
-        propsToChangePixel6.put("MODEL", "Pixel 6 Pro");
-        propsToChangePixel6.put("FINGERPRINT", "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys");
+        propsToChangePixel6.put("MODEL", "Pixel 6");
+        propsToChangePixel6.put("FINGERPRINT", "google/oriole/oriole:12/SD1A.210817.015.A4/7697517:user/release-keys");
         propsToChangePixel5 = new HashMap<>();
         propsToChangePixel5.put("BRAND", "google");
         propsToChangePixel5.put("MANUFACTURER", "Google");
