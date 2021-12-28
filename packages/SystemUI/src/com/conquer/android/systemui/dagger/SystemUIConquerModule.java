@@ -11,6 +11,8 @@ import android.os.PowerManager;
 
 import androidx.annotation.Nullable;
 
+import com.conquer.android.systemui.theme.ThemeOverlayControllerConquer;
+
 import com.google.android.systemui.smartspace.BcSmartspaceDataProvider;
 import com.google.android.systemui.smartspace.KeyguardMediaViewController;
 import com.google.android.systemui.smartspace.KeyguardZenAlarmViewController;
@@ -70,6 +72,7 @@ import com.android.systemui.statusbar.policy.SensorPrivacyController;
 import com.android.systemui.statusbar.policy.SensorPrivacyControllerImpl;
 import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.util.concurrency.DelayableExecutor;
+import com.android.systemui.theme.ThemeOverlayController;
 
 import javax.inject.Named;
 
@@ -235,4 +238,7 @@ public abstract class SystemUIConquerModule {
     static BcSmartspaceDataPlugin provideBcSmartspaceDataPlugin() {
         return new BcSmartspaceDataProvider();
     }
+
+    @Binds
+    abstract ThemeOverlayController provideThemeOverlayController(ThemeOverlayControllerConquer themeOverlayController);
 }
