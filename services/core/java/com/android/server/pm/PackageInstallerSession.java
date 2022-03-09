@@ -681,7 +681,7 @@ public class PackageInstallerSession extends IPackageInstallerSession.Stub {
             final Runnable r;
             synchronized (mLock) {
                 assertNotChildLocked("StagedSession#abandon");
-                assertCallerIsOwnerOrRoot();
+                assertCallerIsOwnerOrRootOrSystem();
                 if (isInTerminalState()) {
                     // We keep the session in the database if it's in a finalized state. It will be
                     // removed by PackageInstallerService when the last update time is old enough.
@@ -3725,7 +3725,7 @@ public class PackageInstallerSession extends IPackageInstallerSession.Stub {
 
         synchronized (mLock) {
             assertNotChildLocked("abandonNonStaged");
-            assertCallerIsOwnerOrRoot();
+            assertCallerIsOwnerOrRootOrSystem();
             if (mRelinquished) {
                 if (LOGD) Slog.d(TAG, "Ignoring abandon after commit relinquished control");
                 return;

@@ -323,9 +323,11 @@ public class BtHelper {
         return AudioSystem.bluetoothCodecToAudioFormat(btCodecConfig.getCodecType());
     }
 
-     //SCO device tracking for TWSPLUS device
+     //SCO device tracking for TWSPLUS or GROUP device
     private HashMap<BluetoothDevice, Integer> mScoClientDevices =
                                           new HashMap<BluetoothDevice, Integer>();
+    private static final int GROUP_ID_START = 0;
+    private static final int GROUP_ID_END = 15;
 
     private void updateTwsPlusScoState(BluetoothDevice device, Integer state) {
         if (mScoClientDevices.containsKey(device)) {
@@ -392,6 +394,68 @@ public class BtHelper {
         return ret;
     }
 
+    private boolean isGroupDevice(BluetoothDevice device) {
+        int type = device.getDeviceType();
+        boolean ret = false;
+        Log.i(TAG, "Bluetooth device type: " + type);
+        if (type >= GROUP_ID_START && type <= GROUP_ID_END)
+            ret = true;
+        Log.i(TAG, "isGroupDevice return " + ret);
+        return ret;
+    }
+
+    private void updateGroupScoState(BluetoothDevice device, Integer state) {
+        if (mScoClientDevices.containsKey(device)) {
+            Integer prevState = mScoClientDevices.get(device);
+            Log.i(TAG, "updateGroupScoState: prevState: " + prevState + "state: " + state);
+            if (state != prevState) {
+                mScoClientDevices.remove(device);
+                mScoClientDevices.put(device, state);
+            }
+        } else {
+            mScoClientDevices.put(device, state);
+        }
+    }
+
+    private boolean checkAndUpdateGroupScoState(Intent intent, Integer state) {
+        //default ret value is true
+        //so that legacy devices fallsthru
+        boolean ret = true;
+        BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+        Log.i(TAG, "device:" + device);
+
+        if (device == null) {
+           Log.e(TAG, "checkAndUpdateGroupScoState: device is null");
+           //intent cant have device has null
+           //in case it is treat them as non-twsplus case and return true
+           return ret;
+        }
+
+        if (isGroupDevice(device)) {
+            if (state == BluetoothHeadset.STATE_AUDIO_CONNECTED) {
+                //if adding new Device
+                //check if there is no device already connected
+                if (isAudioPathUp()) {
+                    Log.i(TAG, "No need to bringup audio-path");
+                    ret = false;
+                }
+                //Update the States now
+                updateGroupScoState(device, state);
+            } else {
+                //For disconnect cases, update the state first
+                updateGroupScoState(device, state);
+                //if deleting new Device
+                //check if all devices are disconnected
+                if (isAudioPathUp()) {
+                    Log.i(TAG, "not good to tear down audio-path");
+                    ret = false;
+                }
+            }
+        }
+        Log.i(TAG, "checkAndUpdateGroupScoState returns " + ret);
+        return ret;
+    }
+
     // @GuardedBy("AudioDeviceBroker.mSetModeLock")
     @GuardedBy("AudioDeviceBroker.mDeviceStateLock")
     /*package*/ synchronized void receiveBtEvent(Intent intent) {
@@ -409,6 +473,8 @@ public class BtHelper {
             switch (btState) {
                 case BluetoothHeadset.STATE_AUDIO_CONNECTED:
                     if (checkAndUpdatTwsPlusScoState(intent,
+                            BluetoothHeadset.STATE_AUDIO_CONNECTED) &&
+                        checkAndUpdateGroupScoState(intent,
                             BluetoothHeadset.STATE_AUDIO_CONNECTED)) {
                         scoAudioState = AudioManager.SCO_AUDIO_STATE_CONNECTED;
                         if (mScoAudioState != SCO_STATE_ACTIVE_INTERNAL &&
@@ -429,7 +495,9 @@ public class BtHelper {
                     break;
                 case BluetoothHeadset.STATE_AUDIO_DISCONNECTED:
                     if (checkAndUpdatTwsPlusScoState(intent,
-                           BluetoothHeadset.STATE_AUDIO_DISCONNECTED)) {
+                           BluetoothHeadset.STATE_AUDIO_DISCONNECTED) &&
+                        checkAndUpdateGroupScoState(intent,
+                            BluetoothHeadset.STATE_AUDIO_DISCONNECTED)) {
                         mDeviceBroker.setBluetoothScoOn(false, "BtHelper.receiveBtEvent");
                         scoAudioState = AudioManager.SCO_AUDIO_STATE_DISCONNECTED;
                         // There are two cases where we want to immediately reconnect audio:
