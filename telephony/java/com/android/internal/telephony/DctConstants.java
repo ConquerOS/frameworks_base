@@ -118,6 +118,7 @@ public class DctConstants {
     public static final int EVENT_GET_ENHANCED_RADIO_CAPABILITY = BASE + 58;
     public static final int EVENT_GET_ENHANCED_RADIO_CAPABILITY_RETRY = BASE + 59;
     public static final int EVENT_RECONNECT_EXT_TELEPHONY_SERVICE = BASE + 60;
+    public static final int EVENT_TRAFFIC_DESCRIPTORS_UPDATED = BASE + 61;
 
     /***** Constants *****/
 
