@@ -906,7 +906,7 @@ public class AudioDeviceInventory {
             }
 
             final int a2dpCodec;
-            if (state == BluetoothA2dp.STATE_DISCONNECTED) {
+            if (state == BluetoothA2dp.STATE_DISCONNECTED && profile == BluetoothProfile.A2DP) {
                 final String key = DeviceInfo.makeDeviceListKey(AudioSystem.DEVICE_OUT_BLUETOOTH_A2DP,
                         device.getAddress());
                 final DeviceInfo di = mConnectedDevices.get(key);
